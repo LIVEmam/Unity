@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public int nextMove;//다음 행동지표를 결정할 변수
     Animator animator;
     SpriteRenderer spriteRenderer;
+    CapsuleCollider2D ccollider;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
         // 초기화 함수 안에 넣어서 실행될 때 마다(최초 1회) nextMove변수가 초기화 되도록함 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ccollider = GetComponent<CapsuleCollider2D>();
     }
 
     void FixedUpdate()
@@ -71,9 +73,32 @@ public class Enemy : MonoBehaviour
             spriteRenderer.flipX = nextMove == 1;
 
             CancelInvoke(); //think를 잠시 멈춘 후 재실행
-            Invoke("Think", 2);//  
+            Invoke("Think", 2);
 
         }
 
+    }
+
+    public void OnDamanged()
+    {
+        //알파
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        //플립y
+        spriteRenderer.flipY = true;
+
+        //콜라인더 Disable
+        ccollider.enabled = false;
+
+        //die effect jump
+        rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+
+        //사라지기
+        Invoke("DeActive", 5);
+    }
+
+    void DeActive()
+    {
+        gameObject.SetActive(false);
     }
 }
