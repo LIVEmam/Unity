@@ -27,26 +27,28 @@ public class GameManager : MonoBehaviour
     public void NextStage()
     {
         //change stage
-        if (stageIndex < stages.Length - 1)
-        {
-            stages[stageIndex].SetActive(false);
-            stageIndex++;
-            stages[stageIndex].SetActive(true);
-            PlayerReposition();
+        //if (stageIndex < stages.Length - 1)
+        //{
+        //    stages[stageIndex].SetActive(false);
+        //    stageIndex++;
+        //    stages[stageIndex].SetActive(true);
+        //    PlayerReposition();
 
-            UIStage.text = "Stage" + (stageIndex + 1);
-        }
-        else
-        {
-            //gaem clear
-            //player contol lock
-            Time.timeScale = 0;
+        //    UIStage.text = "Stage" + (stageIndex + 1);
+        //}
+        //else
+        //{
+        //    //gaem clear
+        //    //player contol lock
+        //    Time.timeScale = 0;
 
-            //Restart Button UI
-            Restart.SetActive(true);
-            Text btnText = Restart.GetComponentInChildren<Text>();
-            btnText.text = "Clear!\nRetry?";
-        }
+        //    //Restart Button UI
+        //    Restart.SetActive(true);
+        //    Text btnText = Restart.GetComponentInChildren<Text>();
+        //    btnText.text = "Clear!\nRetry?";
+        //}
+
+        SceneManager.LoadScene("Scenes/stage02");
 
 
         //Calculate Point

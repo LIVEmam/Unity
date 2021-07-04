@@ -23,7 +23,7 @@ public class Subtitle : MonoBehaviour
         if (Input.anyKeyDown == true) //아무키나 눌렸을 때
         {
             //게임 선택씬으로 이동
-            SceneManager.LoadScene("Scenes/Game");
+            SceneManager.LoadScene("Scenes/stage01");
         }
     }
 
